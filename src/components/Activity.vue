@@ -150,15 +150,9 @@
 <script lang="ts">
 import Vue from "vue";
 import * as moment from "moment";
+import IActivity from "../models/IActivity";
 import Activity from "./Activity.vue";
 
-interface IActivity {
-  id: number;
-  date: moment.Moment;
-  title: string;
-  type: string;
-  distance: number;
-}
 interface IData {
   isOpen: boolean;
   localActivity: IActivity | null;

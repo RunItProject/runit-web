@@ -100,15 +100,9 @@
 import Vue from "vue";
 import * as moment from "moment";
 import throttle  from "lodash.throttle";
+import IActivity from "../models/IActivity";
 import Activity from "./Activity.vue";
 
-interface IActivity {
-  id: number;
-  date: moment.Moment;
-  title: string;
-  type: string;
-  distance: number;
-}
 interface IData {
   date: moment.Moment;
   activities: IActivity[];
