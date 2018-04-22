@@ -2,11 +2,11 @@
 <div>
   <div class="month">
     <div class="month__header">
-      <button class="button is-small is-outlined" @click="prevMonth" @dragover="prevMonth">
+      <button class="button is-small is-outlined" @click="prevMonth" @dragover="prevMonthThrottled">
         <span class="fas fa-chevron-left"></span>
       </button>
       <h2 class="title is-size-4">{{date.format("MMMM, YYYY")}}</h2>
-      <button class="button is-small is-outlined" @click="nextMonth" @dragover="nextMonth">
+      <button class="button is-small is-outlined" @click="nextMonth" @dragover="nextMonthThrottled">
         <span class="fas fa-chevron-right"></span>
       </button>
     </div>
@@ -99,6 +99,7 @@
 <script lang="ts">
 import Vue from "vue";
 import * as moment from "moment";
+import throttle  from "lodash.throttle";
 import Activity from "./Activity.vue";
 
 interface IActivity {
@@ -159,9 +160,11 @@ export default Vue.extend({
     nextMonth() {
       this.date = this.date.clone().add(1, "month");
     },
+    nextMonthThrottled: throttle(function() { this.nextMonth() }, 400, { leading: true, trailing: false}),
     prevMonth() {
       this.date = this.date.clone().subtract(1, "month");
     },
+    prevMonthThrottled: throttle(function() { this.prevMonth() }, 400, { leading: true, trailing: false}),
     /* CRUD Handling */
     createActivity(date: moment.Moment) {
       this.newActivity = {
