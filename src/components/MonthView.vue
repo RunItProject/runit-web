@@ -98,6 +98,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { mapGetters } from "vuex";
 import * as moment from "moment";
 import throttle  from "lodash.throttle";
 import IActivity from "../models/IActivity";

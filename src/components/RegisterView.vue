@@ -1,6 +1,11 @@
 <template>
-  <form @submit.prevent="login">
-    <h3 class="subtitle">Login</h3>
+  <form @submit.prevent="register">
+    <h3 class="subtitle">Register</h3>
+    <div class="field">
+      <div class="control">
+        <input class="input" type="text" placeholder="Your Display Name" autofocus="" v-model="name" required>
+      </div>
+    </div>
     <div class="field">
       <div class="control">
         <input class="input" type="email" placeholder="Your Email" autofocus="" v-model="email" required>
@@ -11,8 +16,12 @@
         <input class="input" type="password" placeholder="Your Password" v-model="password" required>
       </div>
     </div>
-    <button class="button is-block is-info is-fullwidth" type="submit">Login</button>
-    <p class="has-text-danger">{{error}}</p>
+    <div class="field">
+      <div class="control">
+        <input class="input" type="password" placeholder="Repeat Your Password" v-model="passwordRepeat" required>
+      </div>
+    </div>
+    <button class="button is-block is-info is-fullwidth" type="submit">Register</button>
   </form>
 </template>
 
@@ -30,9 +39,10 @@ import Activity from "./Activity.vue";
 import LoginLayout from "./LoginLayout.vue";
 
 interface IData {
+  name: string;
   email: string;
   password: string;
-  error: string;
+  passwordRepeat: string;
 }
 
 export default Vue.extend({
@@ -40,19 +50,20 @@ export default Vue.extend({
   props: [],
   data: (): IData => {
     return {
+      name: "",
       email: "",
       password: "",
-      error: ""
+      passwordRepeat: ""
     };
   },
   methods: {
-    login() {
-      this.$store.dispatch("AUTH_REQUEST", { email: this.email, password: this.password })
-      .then(() => {
+    register() {
+      var data = {
+        name: this.name, email: this.email, password: this.password, passwordRepeat: this.passwordRepeat
+      };
+
+      this.$store.dispatch("AUTH_REGISTER", data).then(() => {
         this.$router.push('/');
-      })
-      .catch(() => {
-        this.error = "Email or password incorrect.";
       });
     }
   }
