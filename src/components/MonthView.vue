@@ -98,7 +98,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import * as moment from "moment";
 import throttle  from "lodash.throttle";
 import IActivity from "../models/IActivity";
@@ -106,7 +106,6 @@ import Activity from "./Activity.vue";
 
 interface IData {
   date: moment.Moment;
-  activities: IActivity[];
   newActivity: null;
 }
 
@@ -115,40 +114,13 @@ export default Vue.extend({
     Activity
   },
   props: [],
+  created() {
+    this.$store.dispatch('ACTIVITIES_REQUEST', this.currentUser.id);
+  },
   data: (): IData => {
     return {
       date: moment(new Date(2018, 3, 1)),
-      activities: [
-        {
-          id: 0,
-          date: moment("2018-04-13"),
-          title: "C25K Week 6 Day 3",
-          type: "easy",
-          distance: 3.2
-        },
-        {
-          id: 1,
-          date: moment("2018-04-16"),
-          title: "C25K Week 7 Day 1",
-          type: "easy",
-          distance: 4
-        },
-        {
-          id: 2,
-          date: moment("2018-04-18"),
-          title: "C25K Week 7 Day 2",
-          type: "long",
-          distance: 4
-        },
-        {
-          id: 3,
-          date: moment("2018-05-05"),
-          title: "Lundaloppet 5k",
-          type: "race",
-          distance: 5
-        }
-      ],
-      newActivity: null,
+      newActivity: null
     };
   },
   methods: {
@@ -189,8 +161,10 @@ export default Vue.extend({
       }
     },
     getActivitiesForDate(date: moment.Moment) {
-      let activities = (this.activities as any[]).filter(activity =>
-        activity.date.isSame(date, "day")
+      if (! this.activities) return [];
+
+      let activities = (this.activities as IActivity[]).filter(activity =>
+        moment(activity.date).isSame(date, "day")
       );
       if (this.newActivity && this.newActivity.date.isSame(date, "day")) {
         activities.push(this.newActivity);
@@ -222,7 +196,11 @@ export default Vue.extend({
   computed: {
     weeks() {
       return generateWeeks(this.date);
-    }
+    },
+    ...mapState<any>({
+      activities: state => state.activity.activities,
+      currentUser: state => state.user.user
+    })
   }
 });
 

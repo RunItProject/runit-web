@@ -1,5 +1,5 @@
 <template>
-    <div :class="['activity', 'activity--type-' + activity.type, {'is-open' : isOpen}]" ref="activity"
+    <div :class="['activity', 'activity--type-' + activity.type.name, {'is-open' : isOpen}]" ref="activity"
         @dragstart="onDrag($event, activity)">
         <div class="activity__header" @click="toggleDetails">
             {{activity.title || "(No title)" }}<span v-if="activity.distance != null"> - {{activity.distance}} km</span>
@@ -22,7 +22,7 @@
                     <label class="label is-small">Type</label>
                     <div class="control is-expanded">
                         <div class="select is-fullwidth is-small">
-                            <select v-model="localActivity.type">
+                            <select v-model="localActivity.type.name">
                                 <option value="easy">Easy</option>
                                 <option value="race">Race</option>
                                 <option value="long">Long</option>

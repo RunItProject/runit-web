@@ -12,6 +12,9 @@ Vue.use(Router);
 
 const routes: RouteConfig[] = [
   { path: '/', component: BaseLayout,
+    beforeEnter(to, from, next) {
+      store.dispatch('USER_REQUEST').then(next);
+    },
     children: [
       { path: '/', component: MonthView },
     ]
@@ -33,7 +36,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   const allowAnonymous: boolean = to.matched.some(record => record.meta.allowAnonymous);
-  const isLoggedIn: boolean = localStorage.getItem('token') != null;
+  const isLoggedIn: boolean = store.getters.isAuthenticated;
 
   if (isLoggedIn || allowAnonymous) {
     next();

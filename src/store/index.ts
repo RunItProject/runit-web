@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex, { StoreOptions } from 'vuex';
+import { activity } from './modules/activity';
 import { auth } from './modules/auth';
 import { user } from './modules/user';
 
@@ -13,7 +14,7 @@ const store: StoreOptions<IRootState> = {
         version: '1.0.0' // a simple property
     },
     modules: {
-        auth, user
+        auth, user, activity
     }
 };
 
