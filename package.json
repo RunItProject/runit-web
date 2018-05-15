@@ -1,11 +1,11 @@
 {
-  "name": "typescript-vue-todomvc",
+  "name": "runit-client",
   "version": "1.0.0",
-  "description": "A sample Vue application that uses TypeScript along with .vue files.",
+  "description": "",
   "main": "index.js",
   "author": {
-    "name": "Daniel Rosenwasser",
-    "url": "https://github.com/DanielRosenwasser"
+    "name": "Mortimer Henningsson",
+    "url": "https://github.com/mortimerh/"
   },
   "license": "Apache-2.0",
   "dependencies": {
