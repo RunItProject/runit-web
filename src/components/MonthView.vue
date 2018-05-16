@@ -106,7 +106,7 @@ import Activity from "./Activity.vue";
 
 interface IData {
   date: moment.Moment;
-  newActivity: null;
+  newActivity: IActivity | null;
 }
 
 export default Vue.extend({
@@ -119,7 +119,7 @@ export default Vue.extend({
   },
   data: (): IData => {
     return {
-      date: moment(new Date(2018, 3, 1)),
+      date: moment.utc(),
       newActivity: null
     };
   },
@@ -136,33 +136,32 @@ export default Vue.extend({
     createActivity(date: moment.Moment) {
       this.newActivity = {
         id: null,
-        date: date,
+        date: date.clone(),
         title: "",
-        type: null,
-        distance: null
+        typeId: null,
+        userId: this.currentUser.id,
+        distance: 0
       };
     },
     saveActivity(oldActivity: IActivity, updatedActivity: IActivity) {
       if (oldActivity === this.newActivity) {
-        let nextId = Math.max(
-          0, ...(this.activities as IActivity[]).map(function(activity){return activity.id;})
-        ) + 1;
-
-        this.activities.push(Object.assign({}, updatedActivity, {id:nextId}));
-        this.newActivity = null;
+        updatedActivity.id = 0; // Set id to 0 to let Backend generate id.
+        this.$store.dispatch("ACTIVITY_CREATE", updatedActivity).then(() => {
+          this.newActivity = null;
+        });
+      } else {
+        this.$store.dispatch("ACTIVITY_UPDATE", updatedActivity);
       }
-      Object.assign(oldActivity, updatedActivity);
     },
     deleteActivity(activity: IActivity) {
       if (activity === this.newActivity) {
         this.newActivity = null;
       } else {
-        (this.activities as IActivity[]).splice(this.activities.indexOf(activity), 1);
+        this.$store.dispatch("ACTIVITY_DELETE", activity);
       }
     },
     getActivitiesForDate(date: moment.Moment) {
       if (! this.activities) return [];
-
       let activities = (this.activities as IActivity[]).filter(activity =>
         moment(activity.date).isSame(date, "day")
       );
@@ -186,7 +185,9 @@ export default Vue.extend({
       );
 
       if (draggedActivity) {
-        draggedActivity.date = date.clone();
+        let updatedActivity = draggedActivity;
+        updatedActivity.date = date.clone();
+        this.saveActivity(draggedActivity, updatedActivity)
       }
     },
     onDragOver(event: DragEvent) {

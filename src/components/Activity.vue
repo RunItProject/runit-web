@@ -1,5 +1,5 @@
 <template>
-    <div :class="['activity', 'activity--type-' + activity.type.name, {'is-open' : isOpen}]" ref="activity"
+    <div :class="['activity', 'activity--type-' + typeKey, {'is-open' : isOpen}]" ref="activity"
         @dragstart="onDrag($event, activity)">
         <div class="activity__header" @click="toggleDetails">
             {{activity.title || "(No title)" }}<span v-if="activity.distance != null"> - {{activity.distance}} km</span>
@@ -22,10 +22,10 @@
                     <label class="label is-small">Type</label>
                     <div class="control is-expanded">
                         <div class="select is-fullwidth is-small">
-                            <select v-model="localActivity.type.name">
-                                <option value="easy">Easy</option>
-                                <option value="race">Race</option>
-                                <option value="long">Long</option>
+                            <select v-model.number="localActivity.typeId">
+                                <option value="1">Easy</option>
+                                <option value="2">Long</option>
+                                <option value="3">Race</option>
                             </select>
                         </div>
                     </div>
@@ -82,6 +82,7 @@
 .activity__header {
     position: relative;
     padding-left: 12px;
+    cursor: pointer;
 }
 .activity__header:before {
     content: " ";
@@ -151,14 +152,13 @@
 import Vue from "vue";
 import * as moment from "moment";
 import IActivity from "../models/IActivity";
-import Activity from "./Activity.vue";
 
 interface IData {
   isOpen: boolean;
   localActivity: IActivity | null;
 }
 
-export default Vue.component("actvitiy", {
+export default Vue.component("actvitity", {
     props: ['activity', 'onDrag', 'onDelete', 'onMove', 'onSave'],
     data: (): IData => {
         return {
@@ -176,7 +176,6 @@ export default Vue.component("actvitiy", {
             }
         },
         documentClick(event: PointerEvent) {
-            console.log("documentClick");
             let el = this.$refs.activity;
             let target = event.target;
 
@@ -193,6 +192,13 @@ export default Vue.component("actvitiy", {
     computed: {
         isNew() {
             return this.activity.id == null;
+        },
+        typeKey() {
+            switch(this.activity.typeId) {
+                case 1: return "easy";
+                case 2: return "long";
+                case 3: return "race";
+            }
         }
     },
     created () {
