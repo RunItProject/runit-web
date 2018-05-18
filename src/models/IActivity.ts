@@ -1,16 +1,14 @@
 import * as moment from 'moment';
-import IActivityType from './IActivityType';
+import IActivityBase from './IActivityBase';
 import IUser from './IUser';
+import IUserPlanSubscription from './IUserPlanSubscription';
 
-interface IActivity {
-  id: number;
+interface IActivity extends IActivityBase {
   date: moment.Moment;
-  title: string;
-  typeId: number;
-  type: IActivityType;
-  distance: number;
   userId: number;
   user: IUser;
+  userPlanSubscription: IUserPlanSubscription;
+  userPlanSubscriptionId: number;
 }
 
 export default IActivity;
