@@ -4,6 +4,7 @@ import BaseLayout from './components/BaseLayout.vue';
 import LoginLayout from './components/LoginLayout.vue';
 import LoginView from './components/LoginView.vue';
 import MonthView from './components/MonthView.vue';
+import PlanView from './components/PlanView.vue';
 import RegisterView from './components/RegisterView.vue';
 import ResetPasswordView from './components/ResetPasswordView.vue';
 import store from './store';
@@ -17,6 +18,7 @@ const routes: RouteConfig[] = [
     },
     children: [
       { path: '/', component: MonthView },
+      { path: '/plans', component: PlanView },
     ]
   },
   { path: '/', component: LoginLayout, meta: { allowAnonymous: true },

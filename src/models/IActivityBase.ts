@@ -5,7 +5,7 @@ interface IActivityBase {
   id: number;
   title: string;
   typeId: number;
-  type: IActivityType;
+  type: IActivityType | null;
   distance: number;
 }
 

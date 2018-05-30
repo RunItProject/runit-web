@@ -4,7 +4,7 @@ import IPlan from './IPlan';
 
 interface IPlanActivity extends IActivityBase {
     planId: number;
-    plan: IPlan;
+    plan: IPlan | null;
     week: number;
     dayOfWeek: number;
 }
