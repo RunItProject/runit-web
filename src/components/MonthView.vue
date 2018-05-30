@@ -3,11 +3,15 @@
   <div class="month">
     <div class="month__header">
       <button class="button is-small is-outlined" @click="prevMonth" @dragover="prevMonthThrottled">
-        <span class="fas fa-chevron-left"></span>
+        <span class="icon">
+          <i class="fas fa-chevron-left"></i>
+        </span>
       </button>
       <h2 class="title is-size-4">{{date.format("MMMM, YYYY")}}</h2>
       <button class="button is-small is-outlined" @click="nextMonth" @dragover="nextMonthThrottled">
-        <span class="fas fa-chevron-right"></span>
+        <span class="icon">
+          <i class="fas fa-chevron-right"></i>
+        </span>
       </button>
     </div>
     <div class="month__body">
@@ -45,9 +49,6 @@
 </template>
 
 <style>
-.month {
-  padding: 20px;
-}
 .month__header {
   text-align: center;
 }

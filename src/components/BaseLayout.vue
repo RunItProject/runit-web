@@ -1,12 +1,16 @@
 <template>
 <div>
     <Header></Header>
-    <router-view></router-view>>
+    <main class="container is-fluid">
+      <router-view></router-view>
+    </main>
 </div>
 </template>
 
 <style>
-
+.container {
+  margin-top: 32px; 
+}
 </style>
 
 <script lang="ts">
