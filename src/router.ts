@@ -4,7 +4,8 @@ import BaseLayout from './components/BaseLayout.vue';
 import LoginLayout from './components/LoginLayout.vue';
 import LoginView from './components/LoginView.vue';
 import MonthView from './components/MonthView.vue';
-import PlanView from './components/PlanView.vue';
+import PlanEditorView from './components/Plans/PlanEditorView.vue';
+import PlansListView from './components/Plans/PlansListView.vue';
 import RegisterView from './components/RegisterView.vue';
 import ResetPasswordView from './components/ResetPasswordView.vue';
 import store from './store';
@@ -12,16 +13,19 @@ import store from './store';
 Vue.use(Router);
 
 const routes: RouteConfig[] = [
-  { path: '/', component: BaseLayout,
+  {
+    path: '/', component: BaseLayout,
     beforeEnter(to, from, next) {
       store.dispatch('USER_REQUEST').then(next);
     },
     children: [
       { path: '/', component: MonthView },
-      { path: '/plans', component: PlanView },
+      { path: '/plans', component: PlansListView },
+      { path: '/plans/:id', component: PlanEditorView }
     ]
   },
-  { path: '/', component: LoginLayout, meta: { allowAnonymous: true },
+  {
+    path: '/', component: LoginLayout, meta: { allowAnonymous: true },
     children: [
       { path: '/login', component: LoginView },
       { path: '/register', component: RegisterView },

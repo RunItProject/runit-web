@@ -6,7 +6,7 @@ import { RouteViews } from './models';
 import router from './router';
 import store from './store';
 
-axios.defaults.baseURL = 'http://localhost:5000/api/';
+axios.defaults.baseURL = 'https://runit.mortimer.nu/api/';
 if (localStorage.getItem('token')) {
     axios.defaults.headers['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 }

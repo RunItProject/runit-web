@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="container is-fluid">
   <h3 class="is-size-4">{{plan.name}}</h3>
   <div v-for="(week, weekIndex) in orderedWeeks" :key="weekIndex">
     <h4 class="is-size-5">Week {{weekIndex}}</h4>
