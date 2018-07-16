@@ -28,7 +28,6 @@
 import Vue from "vue";
 import { mapActions } from "vuex";
 import * as moment from "moment";
-import throttle from "lodash.throttle";
 import IActivity from "../models/IActivity";
 import Activity from "./Activity.vue";
 

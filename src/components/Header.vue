@@ -39,7 +39,6 @@
 import Vue from "vue";
 import { mapActions, mapGetters } from "vuex";
 import * as moment from "moment";
-import throttle from "lodash.throttle";
 import IActivity from "../models/IActivity";
 import Activity from "./Activity.vue";
 import Gravatar from "./Gravatar.vue";

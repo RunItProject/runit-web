@@ -9,7 +9,7 @@
 import Vue from "vue";
 import { mapActions, mapGetters } from "vuex";
 import * as md5 from "md5";
-import throttle from "lodash.throttle";
+import "lodash/throttle";
 import IActivity from "../models/IActivity";
 import Activity from "./Activity.vue";
 

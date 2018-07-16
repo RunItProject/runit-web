@@ -16,7 +16,6 @@
 <script lang="ts">
 import Vue from "vue";
 import * as moment from "moment";
-import throttle  from "lodash.throttle";
 import Header from './Header.vue';
 
 interface IData {

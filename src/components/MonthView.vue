@@ -101,7 +101,7 @@
 import Vue from "vue";
 import { mapGetters, mapState } from "vuex";
 import * as moment from "moment";
-import throttle  from "lodash.throttle";
+import throttle from "lodash.throttle";
 import IActivity from "../models/IActivity";
 import Activity from "./Activity.vue";
 
