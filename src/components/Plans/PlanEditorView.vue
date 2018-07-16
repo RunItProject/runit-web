@@ -38,7 +38,7 @@
 <script lang="ts">
 import Vue from "vue";
 import * as moment from "moment";
-import groupBy from "lodash.groupby";
+import { groupBy } from "lodash";
 import IPlan from "../../models/IPlan";
 import IPlanActivity from "../../models/IPlanActivity";
 import ActivityTypeSelector from "../ActivityTypeSelector.vue";
