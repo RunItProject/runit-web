@@ -7,6 +7,7 @@ cache:
   - node_modules # NPM packages
 install:
 - npm install
+- echo 'rancor.mortimer.nu ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNTuni9lck7RnBoGNyh1hdJmUn3BauxnKYpYgaXweF7HA2zq4t56AS1CqjMWpXpBL2MyI4i6pdUge2KYApbJGIs=' >> $HOME/.ssh/known_hosts
 script:
 - npm run build
 deploy:
