@@ -13,9 +13,8 @@
   </div>
   <div class="navbar-menu">
     <div class="navbar-start">
-      <router-link to="/" class="navbar-item">Home</router-link>
-      <a class="navbar-item">Calendar</a>
-      <router-link to="plans" class="navbar-item">Plans</router-link>
+      <router-link to="/" class="navbar-item">Calendar</router-link>
+      <router-link to="/plans" class="navbar-item">Plans</router-link>
     </div>
     <div class="navbar-end">
       <div class="navbar-item has-dropdown is-hoverable">
