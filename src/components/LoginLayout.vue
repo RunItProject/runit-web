@@ -8,11 +8,11 @@
             <router-view></router-view>
           </div>
           <p class="has-text-grey">
-            <router-link to="login">Login</router-link>
+            <router-link to="/login">Login</router-link>
             &nbsp;·&nbsp;
-            <router-link to="register">Register</router-link>
+            <router-link to="/register">Register</router-link>
             &nbsp;·&nbsp;
-            <router-link to="reset-password">Forgot password</router-link>
+            <router-link to="/reset-password">Forgot password</router-link>
           </p>
         </div>
       </div>
