@@ -3,22 +3,22 @@
     <h3 class="subtitle">Register</h3>
     <div class="field">
       <div class="control">
-        <input class="input" type="text" placeholder="Your Display Name" autofocus="" v-model="name" required>
+        <input class="input" type="text" placeholder="Your Display Name" autofocus="" v-model="name" name="name" required>
       </div>
     </div>
     <div class="field">
       <div class="control">
-        <input class="input" type="email" placeholder="Your Email" autofocus="" v-model="email" required>
+        <input class="input" type="email" placeholder="Your Email" v-model="email" name="email" required>
       </div>
     </div>
     <div class="field">
       <div class="control">
-        <input class="input" type="password" placeholder="Your Password" v-model="password" required>
+        <input class="input" type="password" placeholder="Your Password" v-model="password" name="password" required>
       </div>
     </div>
     <div class="field">
       <div class="control">
-        <input class="input" type="password" placeholder="Repeat Your Password" v-model="passwordRepeat" required>
+        <input class="input" type="password" placeholder="Repeat Your Password" v-model="passwordRepeat" name="passwordRepeat" required>
       </div>
     </div>
     <button class="button is-block is-info is-fullwidth" type="submit">Register</button>

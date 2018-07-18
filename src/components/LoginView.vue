@@ -3,12 +3,12 @@
     <h3 class="subtitle">Login</h3>
     <div class="field">
       <div class="control">
-        <input class="input" type="email" placeholder="Your Email" autofocus="" v-model="email" required>
+        <input class="input" type="email" placeholder="Your Email" autofocus="" v-model="email" name="email" required>
       </div>
     </div>
     <div class="field">
       <div class="control">
-        <input class="input" type="password" placeholder="Your Password" v-model="password" required>
+        <input class="input" type="password" placeholder="Your Password" v-model="password" name="password" required>
       </div>
     </div>
     <button class="button is-block is-info is-fullwidth" type="submit">Login</button>
@@ -46,7 +46,7 @@ export default Vue.extend({
   },
   methods: {
     login() {
-      this.$store.dispatch("AUTH_REQUEST", { email: this.email, password: this.password })
+      this.$store.dispatch("AUTH_REQUEST", { identifier: this.email, identifierType: "email", password: this.password })
       .then(() => {
         this.$router.push('/');
       })
