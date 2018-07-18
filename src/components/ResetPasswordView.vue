@@ -1,13 +1,14 @@
 
 <template>
-  <form @submit.prevent="login">
+  <form @submit.prevent="resetPassword">
     <h3 class="subtitle">Reset password</h3>
     <div class="field">
       <div class="control">
-        <input class="input" type="email" placeholder="Your Email" autofocus="" v-model="email" required>
+        <input class="input" type="email" placeholder="Your Email" autofocus="" v-model="email" name="email" required :disabled="isSubmitDisabled">
       </div>
     </div>
-    <button class="button is-block is-info is-fullwidth" type="submit">Submit</button>
+    <button class="button is-block is-info is-fullwidth" type="submit" :disabled="isSubmitDisabled">Submit</button>
+    <p :class="{ 'has-text-danger': status == 'error', 'has-text-success': status == 'sent'}">{{message}}</p>
   </form>
 </template>
 
@@ -16,17 +17,15 @@
 </style>
 
 <script lang="ts">
+import axios, { AxiosResponse, AxiosError } from 'axios';
 import Vue from "vue";
-import { mapActions } from "vuex";
-import * as moment from "moment";
-import IActivity from "../models/IActivity";
-import Activity from "./Activity.vue";
 import LoginLayout from "./LoginLayout.vue";
+import { setTimeout } from 'timers';
 
 interface IData {
   email: string;
-  password: string;
-  remember: boolean;
+  message: null | string;
+  status: null | "sending" | "sent" | "error";
 }
 
 export default Vue.extend({
@@ -35,15 +34,31 @@ export default Vue.extend({
   data: (): IData => {
     return {
       email: "",
-      password: "",
-      remember: false
+      message: null,
+      status: null
     };
   },
   methods: {
-    login() {
-      this.$store.dispatch("AUTH_REQUEST", { email: this.email, password: this.password }).then(() => {
-        this.$router.push('/');
-      });
+    resetPassword() {
+      this.status = "sending";
+      axios({ url: 'user/reset_password', data: {email: this.email}, method: 'POST' })
+        .then(resp => {
+          this.status = "sent";
+          this.message = "A link to reset your password has been sent to your email.";
+        })
+        .catch((err: AxiosError) => {
+          this.status = "error";
+          if (err.response && err.response.status == 400) {
+            this.message = "Invalid or unknown email.";
+          } else {
+            this.message = "An unknown error occured.";
+          }
+        });
+    }
+  },
+  computed: {
+    isSubmitDisabled() {
+      return this.status == 'sending' || this.status == 'sent';
     }
   }
 });

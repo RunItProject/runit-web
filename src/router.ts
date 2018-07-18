@@ -8,6 +8,7 @@ import PlanEditorView from './components/Plans/PlanEditorView.vue';
 import PlansListView from './components/Plans/PlansListView.vue';
 import RegisterView from './components/RegisterView.vue';
 import ResetPasswordView from './components/ResetPasswordView.vue';
+import SetNewPasswordView from './components/SetNewPasswordView.vue';
 import store from './store';
 
 Vue.use(Router);
@@ -30,6 +31,7 @@ const routes: RouteConfig[] = [
       { path: '/login', component: LoginView },
       { path: '/register', component: RegisterView },
       { path: '/reset-password', component: ResetPasswordView },
+      { path: '/reset-password/:userId', component: SetNewPasswordView },
     ]
   },
 ];
