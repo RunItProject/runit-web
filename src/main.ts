@@ -5,6 +5,7 @@ import MonthView from './components/MonthView.vue';
 import { RouteViews } from './models';
 import router from './router';
 import store from './store';
+import './style/app.scss';
 
 axios.defaults.baseURL = 'https://runit.mortimer.nu/api/';
 if (localStorage.getItem('token')) {

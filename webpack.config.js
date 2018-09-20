@@ -1,5 +1,6 @@
 // @ts-check
 
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path')
 var webpack = require('webpack')
 
@@ -40,6 +41,16 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.(scss)$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader',
+            'sass-loader'
+          ]
+        })
       }
     ]
   },
@@ -49,6 +60,9 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js'
     }
   },
+  plugins: [
+    new ExtractTextPlugin('style.css')
+  ],
   devServer: {
     historyApiFallback: true,
     noInfo: true
