@@ -19,7 +19,7 @@
     <div class="navbar-end">
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
-          <Gravatar email="currentUser.email" />&ensp;{{currentUser && currentUser.name}}
+          <span class="icon"><i class="fas fa-user"></i></span>&ensp;{{currentUser && currentUser.name}}
         </a>
         <div class="navbar-dropdown is-active">
           <a class="navbar-item">Profile</a>
