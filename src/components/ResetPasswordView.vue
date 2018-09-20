@@ -7,7 +7,7 @@
         <input class="input" type="email" placeholder="Your Email" autofocus="" v-model="email" name="email" required :disabled="isSubmitDisabled">
       </div>
     </div>
-    <button class="button is-block is-info is-fullwidth" type="submit" :disabled="isSubmitDisabled">Submit</button>
+    <button class="button is-block is-primary is-fullwidth" type="submit" :disabled="isSubmitDisabled">Submit</button>
     <p :class="{ 'has-text-danger': status == 'error', 'has-text-success': status == 'sent'}">{{message}}</p>
   </form>
 </template>

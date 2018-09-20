@@ -11,7 +11,7 @@
         <input class="input" type="password" placeholder="Your Password" v-model="password" name="password" required>
       </div>
     </div>
-    <button class="button is-block is-info is-fullwidth" type="submit">Login</button>
+    <button class="button is-block is-primary is-fullwidth" type="submit">Login</button>
     <p class="has-text-danger">{{error}}</p>
   </form>
 </template>

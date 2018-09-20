@@ -3,7 +3,7 @@
     <div class="hero-body">
       <div class="container has-text-centered">
         <div class="column is-4 is-offset-4">
-          <h3 class="title has-text-dark">RunIt</h3>
+          <img src="/static/logo.png" alt="RunIt" height="32">
           <div class="box">
             <router-view></router-view>
           </div>

@@ -1,2 +1,14 @@
 @charset "utf-8";
+@import "./colors.scss";
+
+
+$primary: $brand;
+$link: $brand;
+$info: $brand-light;
+$success: $green;
+$warning: $yellow;
+$danger: $red;
+// $dark: $grey-darker;
+$text: $brand-black;
+
 @import "~bulma/bulma";

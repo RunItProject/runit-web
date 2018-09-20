@@ -12,7 +12,7 @@
         <input class="input" type="password" placeholder="Repeat password" autofocus="" v-model="passwordRepeat" name="passwordRepeat" required>
       </div>
     </div>
-    <button class="button is-block is-info is-fullwidth" type="submit">Submit</button>
+    <button class="button is-block is-primary is-fullwidth" type="submit">Submit</button>
     <p :class="{ 'has-text-danger': status == 'error', 'has-text-success': status == 'success'}">{{message}}</p>
   </form>
 </template>

@@ -21,7 +21,8 @@
         <input class="input" type="password" placeholder="Repeat Your Password" v-model="passwordRepeat" name="passwordRepeat" required>
       </div>
     </div>
-    <button class="button is-block is-info is-fullwidth" type="submit">Register</button>
+    <button class="button is-block is-primary is-fullwidth" type="submit">Register</button>
+    <p class="has-text-danger">{{error}}</p>
   </form>
 </template>
 
@@ -63,7 +64,10 @@ export default Vue.extend({
 
       this.$store.dispatch("AUTH_REGISTER", data).then(() => {
         this.$router.push('/');
-      });
+      })
+      .catch(() => {
+        this.error = "An error occured.";
+      });;
     }
   }
 });
