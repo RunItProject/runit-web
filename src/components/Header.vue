@@ -40,12 +40,10 @@ import { mapActions, mapGetters } from "vuex";
 import * as moment from "moment";
 import IActivity from "../models/IActivity";
 import Activity from "./Activity.vue";
-import Gravatar from "./Gravatar.vue";
 
 interface IData {}
 
 export default Vue.extend({
-  components: { Gravatar },
   props: [],
   data: (): IData => {
     return {};
