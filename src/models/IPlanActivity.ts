@@ -1,4 +1,3 @@
-import * as moment from 'moment';
 import IActivityBase from './IActivityBase';
 import IPlan from './IPlan';
 

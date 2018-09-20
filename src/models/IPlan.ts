@@ -1,4 +1,3 @@
-import * as moment from 'moment';
 import IPlanActivity from './IPlanActivity';
 import IUserPlanSubscription from './IUserPlanSubscription';
 

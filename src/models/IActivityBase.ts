@@ -1,4 +1,3 @@
-import * as moment from 'moment';
 import IActivityType from './IActivityType';
 
 interface IActivityBase {
