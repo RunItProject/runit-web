@@ -48,7 +48,12 @@
 </div>
 </template>
 
-<style>
+<style lang="scss">
+@import "../style/colors.scss";
+
+$border-radius: 4px;
+$border-color: $brand;
+
 .month__header {
   text-align: center;
 }
@@ -62,19 +67,32 @@
 .day {
   display: inline-block;
   padding: 8px;
-  border-color: gray;
-  border-top: 1px solid;
-  border-left: 1px solid;
+  border-top: 1px solid $border-color;
+  border-left: 1px solid $border-color;
   width: 14.285714286%;
 }
-.day:last-of-type {
-  border-right: 1px solid;
+
+.week .day:last-of-type {
+  border-right: 1px solid $border-color;
 }
 .week:last-of-type .day {
-  border-bottom: 1px solid;
+  border-bottom: 1px solid $border-color;
 }
+.week:first-of-type .day:first-of-type {
+  border-top-left-radius: $border-radius;
+}
+.week:first-of-type .day:last-of-type {
+  border-top-right-radius: $border-radius;
+}
+.week:last-of-type .day:first-of-type {
+  border-bottom-left-radius: $border-radius;
+}
+.week:last-of-type .day:last-of-type {
+  border-bottom-right-radius: $border-radius;
+}
+
 .day--faded {
-  border-color: gray !important;
+  border-color: $border-color;
 }
 .day--faded .day__header {
   color: #ccc;
