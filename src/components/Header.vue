@@ -2,7 +2,7 @@
 <nav class="navbar is-light" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
-      <img src="/static/logo.png" alt="RunIt" height="32">
+      <img src="/static/logo.svg" alt="RunIt" height="32">
     </a>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
